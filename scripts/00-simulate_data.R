@@ -1,11 +1,11 @@
 #### Preamble ####
 # Purpose: Simulates the data for the Toronto Public Art statistics... [...UPDATE THIS...]
-# Author: Alaina Hu [...UPDATE THIS...]
-# Date: 19 January 2024 [...UPDATE THIS...]
-# Contact: alaina.hu@utoronto.ca [...UPDATE THIS...]
+# Author: Alaina Hu 
+# Date: 19 January 2024 
+# Contact: alaina.hu@utoronto.ca 
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Find Public Art Data from Open Data Toronto
+# Any other information needed? NA
 
 
 #### Workspace setup ####
