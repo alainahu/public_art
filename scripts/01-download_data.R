@@ -12,7 +12,7 @@
 library(opendatatoronto)
 library(tidyverse)
 library(readxl)
-# [...UPDATE THIS...]
+
 
 #### Download data ####
 #Main public art data set
