@@ -1,19 +1,42 @@
 #### Preamble ####
-# Purpose: Simulates... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Simulates the data for the Toronto Public Art statistics... [...UPDATE THIS...]
+# Author: Alaina Hu [...UPDATE THIS...]
+# Date: 19 January 2024 [...UPDATE THIS...]
+# Contact: alaina.hu@utoronto.ca [...UPDATE THIS...]
 # License: MIT
 # Pre-requisites: [...UPDATE THIS...]
 # Any other information needed? [...UPDATE THIS...]
 
 
 #### Workspace setup ####
+install.packages("tidyverse")
 library(tidyverse)
 # [...UPDATE THIS...]
 
 #### Simulate data ####
 # [...ADD CODE HERE...]
+# There are currently 400 public art installations, so we are simulating 400 pieces.
+# The City of Toronto has 25 wards.
 
-
+ward_names <- c("Etobicoke North", "Etobicoke Centre", "Etobicoke-Lakeshore", 
+                "Parkdale-High Park","York South-Weston", "York Centre", 
+                "Humber River-Black Creek", "Eglinton-Lawrence",
+                "Davenport", "Spadina-Fort York", "University-Rosedale",
+                "Toronto-St. Paul's", "Toronto Centre", "Toronto-Danforth",
+                "Don Valley West", "Don Valley East", "Don Valley North",
+                "Willowdale", "Beaches-East York", "Scarborough Southwest",
+                "Scarborough Centre", "Scarborough-Agincourt",
+                "Scarborough North", "Scarborough-Guildwood",
+                "Scarborough-Rouge Park")
+set.seed(106)
+simulated_art_data <- tibble(artwork_id = 1:400,
+                              ward_number = sample(1:25, size = 400, replace = TRUE),
+                             ward_name = sample(ward_names, size = 400, replace = TRUE))
+                              
+#### Tests ####
+simulated_art_data$ward_name |>
+  unique() %in% ward_names
+simulated_art_data$ward_number |>
+  unique() |>
+  length() == 25
 
