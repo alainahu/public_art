@@ -9,6 +9,7 @@
 
 #### Workspace setup ####
 library(tidyverse)
+library(knitr)
 
 #### Clean data ####
 raw_data_1 <- read_csv("inputs/data/unedited_data.csv")
@@ -35,32 +36,13 @@ cleaned_ward_data = cleaned_ward_data[c("WARD", setdiff(names(cleaned_ward_data)
 count_by_ward <- cleaned_art_data |> group_by(WARD) |> count(WARD)
 analysis_data <- left_join(cleaned_ward_data, count_by_ward)  
 analysis_data$n <- replace(analysis_data$n, is.na(analysis_data$n), 0)
-# cleaned_data <-
-#   raw_data |>
-#   janitor::clean_names() |>
-#   select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-#   filter(wing_width_mm != "caw") |>
-#   mutate(
-#     flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-#                                    "1.35",
-#                                    flying_time_sec_first_timer)
-#   ) |>
-#   mutate(wing_width_mm = if_else(wing_width_mm == "490",
-#                                  "49",
-#                                  wing_width_mm)) |>
-#   mutate(wing_width_mm = if_else(wing_width_mm == "6",
-#                                  "60",
-#                                  wing_width_mm)) |>
-#   mutate(
-#     wing_width_mm = as.numeric(wing_width_mm),
-#     wing_length_mm = as.numeric(wing_length_mm),
-#     flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-#   ) |>
-#   rename(flying_time = flying_time_sec_first_timer,
-#          width = wing_width_mm,
-#          length = wing_length_mm
-#          ) |> 
-#   tidyr::drop_na()
+
+
+analysis_data$WARD <- as.character(analysis_data$WARD) 
+analysis_data$population <- as.numeric(analysis_data$population)
+analysis_data$minority_population <- as.numeric(analysis_data$minority_population)
+analysis_data$income <- as.numeric(analysis_data$income)
+
 
 #### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+write_csv(analysis_data, "outputs/data/analysis_data.csv")
