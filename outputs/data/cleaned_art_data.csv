@@ -1,0 +1,410 @@
+_id,WARD,WARD_FULLNAME
+1,14,Toronto-Danforth
+2,13,Toronto Centre
+3,11,University-Rosedale
+4,11,University-Rosedale
+5,14,Toronto-Danforth
+6,8,Eglinton-Lawrence
+7,10,Spadina-Fort York
+8,14,Toronto-Danforth
+9,19,Beaches - East York
+10,21,Scarborough Centre
+11,18,Willowdale
+12,20,Scarborough Southwest
+13,11,University-Rosedale
+14,14,Toronto-Danforth
+15,10,Spadina-Fort York
+16,21,Scarborough Centre
+17,11,University-Rosedale
+18,14,Toronto-Danforth
+19,18,Willowdale
+20,11,University-Rosedale
+21,21,Scarborough Centre
+22,10,Spadina-Fort York
+23,10,Spadina-Fort York
+24,21,Scarborough Centre
+25,10,Spadina-Fort York
+26,13,Toronto Centre
+27,8,Eglinton-Lawrence
+28,11,University-Rosedale
+29,5,York South-Weston
+30,10,Spadina-Fort York
+31,19,Beaches - East York
+32,10,Spadina-Fort York
+33,18,Willowdale
+34,11,University-Rosedale
+35,13,Toronto Centre
+36,14,Toronto-Danforth
+37,12,Toronto-St. Paul's
+38,21,Scarborough Centre
+39,11,University-Rosedale
+40,6,York Centre
+41,4,Parkdale-High Park
+42,13,Toronto Centre
+43,10,Spadina-Fort York
+44,4,Parkdale-High Park
+45,10,Spadina-Fort York
+46,10,Spadina-Fort York
+47,10,Spadina-Fort York
+48,11,University-Rosedale
+49,6,York Centre
+50,4,Parkdale-High Park
+51,17,Don Valley North
+52,5,York South-Weston
+53,3,Etobicoke-Lakeshore
+54,10,Spadina-Fort York
+55,10,Spadina-Fort York
+56,4,Parkdale-High Park
+57,3,Etobicoke-Lakeshore
+58,11,University-Rosedale
+59,11,University-Rosedale
+60,11,University-Rosedale
+61,13,Toronto Centre
+62,21,Scarborough Centre
+63,15,Don Valley West
+64,21,Scarborough Centre
+65,20,Scarborough Southwest
+66,4,Parkdale-High Park
+67,21,Scarborough Centre
+68,6,York Centre
+69,11,University-Rosedale
+70,24,Scarborough-Guildwood
+71,13,Toronto Centre
+72,13,Toronto Centre
+73,10,Spadina-Fort York
+74,10,Spadina-Fort York
+75,4,Parkdale-High Park
+76,13,Toronto Centre
+77,10,Spadina-Fort York
+78,11,University-Rosedale
+79,4,Parkdale-High Park
+80,21,Scarborough Centre
+81,14,Toronto-Danforth
+82,10,Spadina-Fort York
+83,3,Etobicoke-Lakeshore
+84,3,Etobicoke-Lakeshore
+85,3,Etobicoke-Lakeshore
+86,10,Spadina-Fort York
+87,14,Toronto-Danforth
+88,5,York South-Weston
+89,18,Willowdale
+90,11,University-Rosedale
+91,11,University-Rosedale
+92,12,Toronto-St. Paul's
+93,21,Scarborough Centre
+94,10,Spadina-Fort York
+95,3,Etobicoke-Lakeshore
+96,11,University-Rosedale
+97,10,Spadina-Fort York
+98,10,Spadina-Fort York
+99,13,Toronto Centre
+100,11,University-Rosedale
+101,18,Willowdale
+102,18,Willowdale
+103,12,Toronto-St. Paul's
+104,25,Scarborough-Rouge Park
+105,10,Spadina-Fort York
+106,13,Toronto Centre
+107,10,Spadina-Fort York
+108,13,Toronto Centre
+109,10,Spadina-Fort York
+110,10,Spadina-Fort York
+111,10,Spadina-Fort York
+112,11,University-Rosedale
+113,10,Spadina-Fort York
+114,10,Spadina-Fort York
+115,10,Spadina-Fort York
+116,18,Willowdale
+117,11,University-Rosedale
+118,10,Spadina-Fort York
+119,10,Spadina-Fort York
+120,13,Toronto Centre
+121,10,Spadina-Fort York
+122,12,Toronto-St. Paul's
+123,10,Spadina-Fort York
+124,13,Toronto Centre
+125,10,Spadina-Fort York
+126,3,Etobicoke-Lakeshore
+127,10,Spadina-Fort York
+128,8,Eglinton-Lawrence
+129,10,Spadina-Fort York
+130,17,Don Valley North
+131,16,Don Valley East
+132,10,Spadina-Fort York
+133,10,Spadina-Fort York
+134,13,Toronto Centre
+135,17,Don Valley North
+136,10,Spadina-Fort York
+137,17,Don Valley North
+138,10,Spadina-Fort York
+139,10,Spadina-Fort York
+140,13,Toronto Centre
+141,18,Willowdale
+142,10,Spadina-Fort York
+143,10,Spadina-Fort York
+144,13,Toronto Centre
+145,10,Spadina-Fort York
+146,13,Toronto Centre
+147,10,Spadina-Fort York
+148,11,University-Rosedale
+149,17,Don Valley North
+150,13,Toronto Centre
+151,10,Spadina-Fort York
+152,10,Spadina-Fort York
+153,10,Spadina-Fort York
+154,10,Spadina-Fort York
+155,13,Toronto Centre
+156,13,Toronto Centre
+157,10,Spadina-Fort York
+158,10,Spadina-Fort York
+159,18,Willowdale
+160,11,University-Rosedale
+161,10,Spadina-Fort York
+162,23,Scarborough North
+163,10,Spadina-Fort York
+164,18,Willowdale
+165,10,Spadina-Fort York
+166,10,Spadina-Fort York
+167,10,Spadina-Fort York
+168,13,Toronto Centre
+169,10,Spadina-Fort York
+170,11,University-Rosedale
+171,17,Don Valley North
+172,10,Spadina-Fort York
+173,10,Spadina-Fort York
+174,10,Spadina-Fort York
+175,13,Toronto Centre
+176,11,University-Rosedale
+177,10,Spadina-Fort York
+178,10,Spadina-Fort York
+179,3,Etobicoke-Lakeshore
+180,18,Willowdale
+181,18,Willowdale
+182,10,Spadina-Fort York
+183,10,Spadina-Fort York
+184,10,Spadina-Fort York
+185,10,Spadina-Fort York
+186,10,Spadina-Fort York
+187,4,Parkdale-High Park
+188,12,Toronto-St. Paul's
+189,4,Parkdale-High Park
+190,10,Spadina-Fort York
+191,10,Spadina-Fort York
+192,10,Spadina-Fort York
+193,17,Don Valley North
+194,17,Don Valley North
+195,17,Don Valley North
+196,17,Don Valley North
+197,17,Don Valley North
+198,17,Don Valley North
+199,10,Spadina-Fort York
+200,10,Spadina-Fort York
+201,12,Toronto-St. Paul's
+202,10,Spadina-Fort York
+203,10,Spadina-Fort York
+204,13,Toronto Centre
+205,11,University-Rosedale
+206,10,Spadina-Fort York
+207,13,Toronto Centre
+208,15,Don Valley West
+209,6,York Centre
+210,3,Etobicoke-Lakeshore
+211,11,University-Rosedale
+212,10,Spadina-Fort York
+213,5,York South-Weston
+214,5,York South-Weston
+215,10,Spadina-Fort York
+216,19,Beaches - East York
+217,14,Toronto-Danforth
+218,14,Toronto-Danforth
+219,2,Etobicoke-Centre
+220,13,Toronto Centre
+221,5,York South-Weston
+222,10,Spadina-Fort York
+223,11,University-Rosedale
+224,2,Etobicoke-Centre
+225,10,Spadina-Fort York
+226,4,Parkdale-High Park
+227,4,Parkdale-High Park
+228,11,University-Rosedale
+229,14,Toronto-Danforth
+230,11,University-Rosedale
+231,4,Parkdale-High Park
+232,3,Etobicoke-Lakeshore
+233,11,University-Rosedale
+234,13,Toronto Centre
+235,10,Spadina-Fort York
+236,4,Parkdale-High Park
+237,3,Etobicoke-Lakeshore
+238,6,York Centre
+239,13,Toronto Centre
+240,4,Parkdale-High Park
+241,5,York South-Weston
+242,10,Spadina-Fort York
+243,10,Spadina-Fort York
+244,10,Spadina-Fort York
+245,12,Toronto-St. Paul's
+246,11,University-Rosedale
+247,10,Spadina-Fort York
+248,11,University-Rosedale
+249,13,Toronto Centre
+250,4,Parkdale-High Park
+251,20,Scarborough Southwest
+252,24,Scarborough-Guildwood
+253,10,Spadina-Fort York
+254,10,Spadina-Fort York
+255,13,Toronto Centre
+256,11,University-Rosedale
+257,10,Spadina-Fort York
+258,21,Scarborough Centre
+259,4,Parkdale-High Park
+260,4,Parkdale-High Park
+261,4,Parkdale-High Park
+262,12,Toronto-St. Paul's
+263,8,Eglinton-Lawrence
+264,13,Toronto Centre
+265,4,Parkdale-High Park
+266,13,Toronto Centre
+267,11,University-Rosedale
+268,13,Toronto Centre
+269,10,Spadina-Fort York
+270,10,Spadina-Fort York
+271,13,Toronto Centre
+272,11,University-Rosedale
+273,14,Toronto-Danforth
+274,10,Spadina-Fort York
+275,10,Spadina-Fort York
+276,10,Spadina-Fort York
+277,10,Spadina-Fort York
+278,6,York Centre
+279,13,Toronto Centre
+280,16,Don Valley East
+281,10,Spadina-Fort York
+282,10,Spadina-Fort York
+283,10,Spadina-Fort York
+284,10,Spadina-Fort York
+285,6,York Centre
+286,10,Spadina-Fort York
+287,12,Toronto-St. Paul's
+288,13,Toronto Centre
+289,13,Toronto Centre
+290,10,Spadina-Fort York
+291,13,Toronto Centre
+292,13,Toronto Centre
+293,13,Toronto Centre
+294,13,Toronto Centre
+295,17,Don Valley North
+296,17,Don Valley North
+297,11,University-Rosedale
+298,10,Spadina-Fort York
+299,1,Etobicoke North
+300,4,Parkdale-High Park
+301,11,University-Rosedale
+302,10,Spadina-Fort York
+303,10,Spadina-Fort York
+304,12,Toronto-St. Paul's
+305,12,Toronto-St. Paul's
+306,2,Etobicoke-Centre
+307,10,Spadina-Fort York
+308,3,Etobicoke-Lakeshore
+309,10,Spadina-Fort York
+310,10,Spadina-Fort York
+311,13,Toronto Centre
+312,12,Toronto-St. Paul's
+313,17,Don Valley North
+314,10,Spadina-Fort York
+315,13,Toronto Centre
+316,10,Spadina-Fort York
+317,10,Spadina-Fort York
+318,10,Spadina-Fort York
+319,10,Spadina-Fort York
+320,10,Spadina-Fort York
+321,13,Toronto Centre
+322,10,Spadina-Fort York
+323,3,Etobicoke-Lakeshore
+324,10,Spadina-Fort York
+325,13,Toronto Centre
+326,10,Spadina-Fort York
+327,10,Spadina-Fort York
+328,13,Toronto Centre
+329,4,Parkdale-High Park
+330,13,Toronto Centre
+331,10,Spadina-Fort York
+332,13,Toronto Centre
+333,10,Spadina-Fort York
+334,10,Spadina-Fort York
+335,10,Spadina-Fort York
+336,10,Spadina-Fort York
+337,10,Spadina-Fort York
+338,13,Toronto Centre
+339,18,Willowdale
+340,13,Toronto Centre
+341,11,University-Rosedale
+342,13,Toronto Centre
+343,10,Spadina-Fort York
+344,10,Spadina-Fort York
+345,4,Parkdale-High Park
+346,10,Spadina-Fort York
+347,10,Spadina-Fort York
+348,10,Spadina-Fort York
+349,17,Don Valley North
+350,13,Toronto Centre
+351,10,Spadina-Fort York
+352,12,Toronto-St. Paul's
+353,13,Toronto Centre
+354,11,University-Rosedale
+355,10,Spadina-Fort York
+356,17,Don Valley North
+357,10,Spadina-Fort York
+358,11,University-Rosedale
+359,13,Toronto Centre
+360,13,Toronto Centre
+361,10,Spadina-Fort York
+362,10,Spadina-Fort York
+363,11,University-Rosedale
+364,11,University-Rosedale
+365,10,Spadina-Fort York
+366,10,Spadina-Fort York
+367,13,Toronto Centre
+368,10,Spadina-Fort York
+369,10,Spadina-Fort York
+370,13,Toronto Centre
+371,10,Spadina-Fort York
+372,22,Scarborough-Agincourt
+373,4,Parkdale-High Park
+374,10,Spadina-Fort York
+375,13,Toronto Centre
+376,13,Toronto Centre
+377,10,Spadina-Fort York
+378,6,York Centre
+379,10,Spadina-Fort York
+380,13,Toronto Centre
+381,11,University-Rosedale
+382,10,Spadina-Fort York
+383,10,Spadina-Fort York
+384,10,Spadina-Fort York
+385,17,Don Valley North
+386,13,Toronto Centre
+387,10,Spadina-Fort York
+388,10,Spadina-Fort York
+389,12,Toronto-St. Paul's
+390,11,University-Rosedale
+391,10,Spadina-Fort York
+392,10,Spadina-Fort York
+393,10,Spadina-Fort York
+394,6,York Centre
+395,10,Spadina-Fort York
+396,17,Don Valley North
+397,10,Spadina-Fort York
+398,18,Willowdale
+399,10,Spadina-Fort York
+400,10,Spadina-Fort York
+401,10,Spadina-Fort York
+402,10,Spadina-Fort York
+403,13,Toronto Centre
+404,11,University-Rosedale
+405,11,University-Rosedale
+406,10,Spadina-Fort York
+407,10,Spadina-Fort York
+408,10,Spadina-Fort York
+409,10,Spadina-Fort York
