@@ -2,7 +2,7 @@
 title: "The Impact of Urbanization, Culture, and Wealth on Public Art in Toronto"
 author: 
   - Alaina Hu
-thanks: "Code and data are available at: LINK."
+thanks: "Code and data are available at: https://github.com/alainahu/starter_folder."
 date: today
 date-format: long
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
@@ -18,11 +18,17 @@ number-sections: true
 #| message: false
 
 #install.packages("modelsummary")
+#install.packages("sf")
+
+
 library(tidyverse)
 library(knitr)
+library(kableExtra)
 library(dplyr)
 library(modelsummary)
 library(ggplot2)
+library(sf)
+
 ```
 
 
@@ -46,20 +52,108 @@ In order to examine urbanization, cultural diversity, and wealth, we use populat
 ## Public Art
 The Public Art raw dataset includes information such as the source, artist, title, medium, installation year, and ward location on the 409 public art pieces
 in Toronto. Since we are only interested in the art pieces and their respective
-ward location, we focus on these two aspects of the data. Figure 1, shows the part of the public art data we focus on.
+ward location, we focus on these two aspects of the data. Table 1, shows the part of the public art data we focus on.
+\vspace{10mm}
 
 ```{r}
 #| label: cleaned_art
-#| fig-cap: Sample of cleaned public art data
+#| tbl-cap: Sample of cleaned public art data
 #| echo: false
 art_data <- read_csv("/cloud/project/outputs/data/cleaned_art_data.csv", show_col_types = FALSE)
 
 art_data |>
   slice(1:5) |>
-  kable(col.names = c("Art ID", "Ward", "Ward Name"))
+  kable(col.names = c("Art ID", "Ward", "Ward Name")) |>
+  kable_styling(latex_options = c("hold_position"))
 
 ```
 
+## Ward Profiles (25-Ward Model)
+
+In the 25-Ward model, the city of Toronto is separated into 25 neighborhoods or
+voting districts. To better understand the effect of urbanization, cultural diversity, and wealth on the location of public art pieces, we compare the effect
+of population, minority population, income on the number of art works across the 
+25 wards. The `Ward Profiles (25-Ward Model)` data contains demographic, social, and economic information for each ward such as population, households, families, education, ethnocultural composition, spoken languages, income and housing costs. For our purpose of research, we are interested in population, minority population, and average income of each ward, so we extract these pieces of information. A sample of the cleaned dataset for the wards is shown below in Figure 2. 
+\vspace{10mm}
+
+```{r}
+#| label: cleaned_ward
+#| tbl-cap: Sample of cleaned Toronto 25 Ward data
+#| echo: false
+ward_data <- read_csv("/cloud/project/outputs/data/cleaned_ward_data.csv", show_col_types = FALSE)
+
+ward_data |>
+  slice(1:5) |>
+  kable(col.names = c("Ward", "Population", "Minority Population", "Income")) |>
+  kable_styling(latex_options = c("hold_position"))
+
+```
+
+## Public Art by Ward
+As we are interested in the number of public art pieces in each ward, we take the cleaned art data and group the wards together. To better understand our dependent response variable of the number of public art installations by ward, we organize the artworks by ward collect a count. Figure 3 shows the number of art pieces by ward for the 25 wards of Toronto. To better visualize the spread of the number of pieces in each ward, we create a bar graph shown in Figure 4. 
+
+\newpage
+
+```{r}
+#| label: art_by_ward
+#| tbl-cap: Number of public art installations by ward.
+#| echo: false
+art_ward_data <- read_csv("/cloud/project/outputs/data/analysis_data.csv", show_col_types = FALSE)
+
+art_ward_data |>
+  select(WARD,ward_name, n) |>
+  kable(col.names = c("Ward", "Ward Name", "Number of Public Art Pieces")) |>
+  kable_styling(latex_options = c("hold_position"))
+
+```
+
+\newpage
+```{r}
+#| label: art_by_ward_bar
+#| tbl-cap: Number of public art installations by ward.
+#| echo: false
+art_ward_data |>
+  ggplot(data = art_ward_data, mapping = aes(x = reorder(WARD, n), y = n)) +
+  geom_bar(stat = "identity") +
+  theme_light() +
+  labs(x = "Ward", y = "Number of Public Art Pieces")
+
+```
+From Figure 4, we can see that Ward 10: Spadina-Fort York, Ward 13: Toronto-Centre, and Ward 11: University-Rosedale have the most number of public art installations while Ward 7: Humber River-Black Creek, Ward 9: Davenport, and Ward 1: Etobicoke North have the least number of public art installations. This aligns with intuition and literature regarding the connection between public art and urbanization. The wards with the 
+
+```{r}
+library(sf)
+#| echo: false
+
+# URL to the zip file
+url <- "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/5e7a8234-f805-43ac-820f-03d7c360b588/resource/35f67d86-cfc8-4483-8d77-50d035b010d9/download/25-ward-model-december-2018-wgs84-latitude-longitude.zip"
+
+# Temporary file to store the downloaded zip
+temp_zip <- tempfile(fileext = ".zip")
+
+# Download the zip file
+download.file(url, temp_zip, mode = "wb")
+
+# Unzip the file to a temporary directory
+temp_dir <- tempdir()
+unzip(temp_zip, exdir = temp_dir)
+
+# Assuming the shapefile is directly in the unzipped folder and has a standard .shp extension
+shapefiles <- list.files(temp_dir, pattern = "\\.shp$", full.names = TRUE)
+
+# Read the shapefile (replace 'shapefiles[1]' with the specific file if there are multiple shapefiles)
+toronto_map <- st_read(shapefiles[1])
+
+# Clean up the downloaded zip file
+unlink(temp_zip)
+
+ggplot(data = toronto_map) +
+  geom_sf() +
+  theme_minimal()
+
+
+
+```
 <!-- Talk more about it. -->
 
 <!-- And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.) -->
