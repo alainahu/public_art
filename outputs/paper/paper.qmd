@@ -5,11 +5,11 @@ author:
 thanks: "Code and data are available at: https://github.com/alainahu/starter_folder."
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Public art has emerged in many urban cities across the world. Existing research and analysis on public art often focuses on the impact of public art on various factors, making public art the explanatory variable. This paper examines public art as a response variable to explanatory variables such as population, minority population, and income as a measure of urbanization, culture, and wealth respectively with Public Art Data and Ward Data for the city of Toronto. Through data visualization, we find a moderately positive relationship between population and public art but no relationship between minority population and public art or income and public art."
 format: pdf
 toc: true
 number-sections: true
-# bibliography: references.bib
+bibliography: references.bib
 ---
 
 ```{r}
@@ -19,47 +19,54 @@ number-sections: true
 
 #install.packages("modelsummary")
 #install.packages("sf")
+#install.packages("ggrepel")
 
 
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(dplyr)
-library(modelsummary)
 library(ggplot2)
 library(sf)
-
+library(ggrepel)
 ```
 
 
 # Introduction
 
 Public art installations, or art pieces available to the general public in public spaces can be found in many urban cities across the world. Installations can be found in
-New York City, Chicago, London, and even Toronto. The city of Toronto has over 400 public art installations provided by two organizations, Public Arts & Monument Collection and the Percent for Public Art Program ("Public Art Map", 2024). Public art not only enhances the urban environment, but it also brings together visitors and residents with local culture and history, creating an educational and bonding experience (Barone, 2023). 
+New York City, Chicago, London, and even Toronto. The city of Toronto has over 400 public art installations provided by two organizations, Public Arts & Monument Collection and the Percent for Public Art Program. Public art not only enhances the urban environment, but it also brings together visitors and residents with local culture and history, creating an educational and bonding experience [@Barone]. 
 
-Public art design is heavily integrated with urban planning and development as a whole. It is crucial for overall public art design to consider the overall coordination of the environment, meaning that public art should consider and reflect the environment that it is in (Meng, 2022). Furthermore, public art is also an important symbol of maturity in a city (Liu, 2021). Thus, our research is interested in the factors that influence public art design and selection of location. We analyze the trend between urbanization, cultural diversity, and wealth on the locations of public art installations in Toronto. 
+Public art design is heavily integrated with urban planning and development as a whole. It is crucial for overall public art design to consider the overall coordination of the environment, meaning that public art should consider and reflect the environment that it is in [@Meng]. Furthermore, public art is also an important symbol of maturity in a city [@Liu]. Thus, our research is interested in the factors that influence public art design and selection of location. We analyze the trend between urbanization, cultural diversity, and wealth on the locations of public art installations in Toronto. 
 
 Our research paper begins with the Data section to visualize and further understand the variables we are examining. Next, we go into Discussion of the relationships between the data we are looking for. Finally, we end the paper with the Conclusion section, summarizing the takeaway and future of this research. 
 
 
 
 # Data
-
-Data for this research comes from Open Data Toronto, an open source data portal containing various topics of data for the city. 
-For the data involved in this paper, we combine `Public Art` and `Ward Profiles (25-Ward Model)`
+Data analysis is performed in `R` [@citeR], and additional help is provided by libraries such as `dplyr` [@dplyr], `ggplot2` [@ggplot], `ggrepel` [@ggrepel], `tidyverse` [@thereferencecanbewhatever], `kableExtra` [@kableextra], `knitr` [@knitr], and `sf` [@pebesma2023spatial], `opendatatoronto` [@toronto], and `readxl` [@excel]. 
+Data for this research comes from Open Data Toronto [@toronto], an open source data portal containing various topics of data for the city. 
+For the data involved in this paper, we combine `Public Art` [@PublicArt] and `Ward Profiles (25-Ward Model)` [@WardProfile]
 In order to examine urbanization, cultural diversity, and wealth, we use population, minority population, and average household income as the explanatory variables to represent these factors. To analyze this trend across Toronto, we look at the effect of population, minority population, and average household income on the number of public art installations across the 25 wards of Toronto. 
 
 ## Public Art
 The Public Art raw dataset includes information such as the source, artist, title, medium, installation year, and ward location on the 409 public art pieces
 in Toronto. Since we are only interested in the art pieces and their respective
-ward location, we focus on these two aspects of the data. Table 1, shows the part of the public art data we focus on.
+ward location, we focus on these two aspects of the data. As shown in Table @tbl:cleaned_art, the data...
+. shows the part of the public art data we focus on.
 \vspace{10mm}
 
 ```{r}
-#| label: cleaned_art
-#| tbl-cap: Sample of cleaned public art data
 #| echo: false
 art_data <- read_csv("/cloud/project/outputs/data/cleaned_art_data.csv", show_col_types = FALSE)
+
+```
+
+
+```{r}
+#| tbl-cap: "Sample of cleaned public art data"
+#| tbl-label: cleaned_art
+#| echo: false
 
 art_data |>
   slice(1:5) |>
@@ -110,7 +117,7 @@ art_ward_data |>
 \newpage
 ```{r}
 #| label: art_by_ward_bar
-#| tbl-cap: Number of public art installations by ward.
+#| fig-cap: Number of public art installations by ward.
 #| echo: false
 art_ward_data |>
   ggplot(data = art_ward_data, mapping = aes(x = reorder(WARD, n), y = n)) +
@@ -119,11 +126,15 @@ art_ward_data |>
   labs(x = "Ward", y = "Number of Public Art Pieces")
 
 ```
-From Figure 4, we can see that Ward 10: Spadina-Fort York, Ward 13: Toronto-Centre, and Ward 11: University-Rosedale have the most number of public art installations while Ward 7: Humber River-Black Creek, Ward 9: Davenport, and Ward 1: Etobicoke North have the least number of public art installations. This aligns with intuition and literature regarding the connection between public art and urbanization. The wards with the 
+From Figure 1, we can see that Ward 10: Spadina-Fort York, Ward 13: Toronto-Centre, and Ward 11: University-Rosedale have the most number of public art installations while Ward 7: Humber River-Black Creek, Ward 9: Davenport, and Ward 1: Etobicoke North have the least number of public art installations. This aligns with intuition and literature regarding the connection between public art and urbanization. This can be visualized in the map below in Figure 2. The 3 wards with the most public art installations are highlighted. As shown, the wards with the most public art installations are in the main urban center of the city, Downtown Toronto.
 
 ```{r}
-library(sf)
 #| echo: false
+#| message: false
+#| warning: false
+#| fig.cap: "Map of Toronto highlighting the wards with the most art work"
+#| fig.pos: 'H'
+library(sf)
 
 # URL to the zip file
 url <- "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/5e7a8234-f805-43ac-820f-03d7c360b588/resource/35f67d86-cfc8-4483-8d77-50d035b010d9/download/25-ward-model-december-2018-wgs84-latitude-longitude.zip"
@@ -142,91 +153,90 @@ unzip(temp_zip, exdir = temp_dir)
 shapefiles <- list.files(temp_dir, pattern = "\\.shp$", full.names = TRUE)
 
 # Read the shapefile (replace 'shapefiles[1]' with the specific file if there are multiple shapefiles)
-toronto_map <- st_read(shapefiles[1])
+toronto_map <- st_read(shapefiles[1], quiet = TRUE)
 
 # Clean up the downloaded zip file
 unlink(temp_zip)
 
 ggplot(data = toronto_map) +
-  geom_sf() +
-  theme_minimal()
+  geom_sf() + 
+  geom_sf(data = toronto_map[toronto_map$AREA_S_CD == "10",], fill = 'lightblue', color = 'black') + geom_sf(data = toronto_map[toronto_map$AREA_S_CD == "13",], fill = 'blue', color = 'black') + 
+  geom_sf(data = toronto_map[toronto_map$AREA_S_CD == "11",], fill = 'darkblue', color = 'black') + 
+  theme_minimal() 
+```
+## Public Art, Population, Minority Population, Income by Ward 
+As the goal of this research is to analyze the impact of urbanization, cultural
+diversity, and income on the locations of public art pieces, we combine the Public
+Art Data grouped by ward with the Ward Profile Data to create the analysis data
+we are interested in. The analysis dataset includes the ward number, ward name, population of the ward, minority population in the ward, and average total income of households in 2020. Below in Table 4 is a sample of the analysis data. 
+```{r}
+#| echo: false
+#| tbl-cap: Sample of Data of All Variables
+art_ward_data |>
+  select(WARD, ward_name, population, minority_population, income, n) |>
+  slice(1:5) |>
+  kable(col.names = c("Ward", "Ward Name", "Population", "Minority Population", "Income", "Public Art")) |>
+  kable_styling(latex_options = c("hold_position"))
+```
 
-
+### Examining Population on Public Art
+As one of our variables of interest, we are determined to examine the relationship between human population and the locations of public art at the ward level. We expect population and the number of public art installations to be positively related because the prosperity and development of cities provide space and development opportunities for the development of public art [@Yin]. Public art is often a reflection of urban development, and population distribution is a direct proxy of urbanization [@Qizhi]. To visualize the relationship of interest, we plot population with the number of public art works.
+```{r}
+#| echo: false
+#| warning: false 
+  ggplot(data = art_ward_data, aes(x = population, y = n, label = WARD)) +
+  geom_point() +
+  geom_text_repel(hjust=-0.5, vjust=0.5) +
+  geom_smooth(method = "lm", color = "red", se = TRUE) +
+  theme_minimal() +
+  labs(x = "Population", y = "Number of Art Works") +
+  scale_colour_viridis_d()
 
 ```
-<!-- Talk more about it. -->
 
-<!-- And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.) -->
+As expected, we see a moderate positive relationship between population of a ward and the number of public art installations in the ward. Furthermore, Ward 10 is an outlier and has both a high population and high number of public art pieces. Intuitively, this aligns with our beliefs and confirms the trend between high population and urbanization with high concentration of public art pieces. 
 
+### Examining Cultural Diversity on Public Art
+Another explanatory variable we are interested in is the cultural diversity of a region. In this case, we visualize the relationship between minority population and the number of public art works per ward. We expect to see a positive relationship between these variables. Figure displays the visualization. 
+```{r}
+#| echo: false
+#| warning: false 
+  ggplot(data = art_ward_data, aes(x = minority_population, y = n, label = WARD)) +
+  geom_point() +
+  geom_text_repel(hjust=-0.5, vjust=0.5) +
+  geom_smooth(method = "lm", color = "red", se = TRUE) +
+  theme_minimal() +
+  labs(x = "Minority Population", y = "Number of Art Works") +
+  scale_colour_viridis_d()
 
+```
+Through the plot, we see that there is no relationship between minority population of a ward and the number of public art works in the ward. It is possible that the location of public art pieces is not a reflection of its cultural diversity. Ward 11 is in the Downtown region but has a lower minority population compared to Ward 13 and Ward 10, also wards located in Downtown. This observation leaves room for further research and investigation into the history and background behind Ward 11's population makeup. 
 
-<!-- Talk way more about it.  -->
+### Examining Income and Public Art
+Lastly, in this research we are hoping to look at the relationship between income by ward and the number of public art pieces. Figure plots the average household income in 2020 by ward with the number of art pieces by ward. 
+```{r}
+#| echo: false
+#| warning: false 
+  ggplot(data = art_ward_data, aes(x = income, y = n, label = WARD)) +
+  geom_point() +
+  geom_text_repel(hjust=-0.5, vjust=0.5) +
+  geom_smooth(method = "lm", color = "red", se = TRUE) +
+  theme_minimal() +
+  labs(x = "Household Income", y = "Number of Art Works") +
+  scale_colour_viridis_d()
 
+```
 
+Similar to the relationship between minority population and public art, we observe no relationship between average household income level and public art. 
 
+# Discussion
+From the data visualizations and observed relationships in the Data section, we see that there is a positive relationship between population and number of public art installations, but there is no relationship between minority population with number of public art pieces and income level with number of public art pieces. Perhaps there are better explanatory variables for the locations of public art installations than minority population and income of a region. After all, public art design is a complicated process and public space designers often have to make many decisions when selecting a location for a public art installation. Deeper research can better help us understand the process of urban public space design.
 
-<!-- \newpage -->
+Further analysis can be conducted to verify the significance of the positive relationship between population and number of public art installations, meaning that we can check if the observed positive relationship is a result of chance or a verified trend. 
 
-<!-- \appendix -->
+# Conclusion
+With the purpose of investigating the relationship between urbanization, cultural diversity, and wealth on public art in Toronto, we find a moderate positive relationship between population and number of public art installations by ward. The research finds no relationship between minority population or wealth on the number of public art pieces. suggesting that there are stronger factors that affect the locations of public art in the city. Further research could focus on the impact of population and urbanization on public art while searching for other potential variables of public art location. 
 
-<!-- # Appendix {-} -->
-
-
-<!-- # Additional data details -->
-
-<!-- # Model details {#sec-model-details} -->
-
-<!-- ## Posterior predictive check -->
-
-<!-- In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows... -->
-
-<!-- In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows...  -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| label: fig-ppcheckandposteriorvsprior -->
-<!-- #| layout-ncol: 2 -->
-<!-- #| fig-cap: "Examining how the model fits, and is affected by, the data" -->
-<!-- #| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"] -->
-
-<!-- pp_check(first_model) + -->
-<!--   theme_classic() + -->
-<!--   theme(legend.position = "bottom") -->
-
-<!-- posterior_vs_prior(first_model) + -->
-<!--   theme_minimal() + -->
-<!--   scale_color_brewer(palette = "Set1") + -->
-<!--   theme(legend.position = "bottom") + -->
-<!--   coord_flip() -->
-<!-- ``` -->
-
-<!-- ## Diagnostics -->
-
-<!-- @fig-stanareyouokay-1 is a trace plot. It shows... This suggests... -->
-
-<!-- @fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests... -->
-
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| eval: true -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| label: fig-stanareyouokay -->
-<!-- #| fig-cap: "Checking the convergence of the MCMC algorithm" -->
-<!-- #| fig-subcap: ["Trace plot", "Rhat plot"] -->
-<!-- #| layout-ncol: 2 -->
-
-<!-- plot(first_model, "trace") -->
-
-<!-- plot(first_model, "rhat") -->
-<!-- ``` -->
-
-
-
-<!-- \newpage -->
 
 
 # References
