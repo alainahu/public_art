@@ -52,7 +52,7 @@ In order to examine urbanization, cultural diversity, and wealth, we use populat
 ## Public Art
 The Public Art raw dataset includes information such as the source, artist, title, medium, installation year, and ward location on the 409 public art pieces
 in Toronto. Since we are only interested in the art pieces and their respective
-ward location, we focus on these two aspects of the data. As shown in Table @tbl:cleaned_art, the data...
+ward location, we focus on these two aspects of the data. As shown in @tbl-cleaned_art, the data...
 . shows the part of the public art data we focus on.
 \vspace{10mm}
 
@@ -65,7 +65,7 @@ art_data <- read_csv("/cloud/project/outputs/data/cleaned_art_data.csv", show_co
 
 ```{r}
 #| tbl-cap: "Sample of cleaned public art data"
-#| tbl-label: cleaned_art
+#| label: tbl-cleaned_art
 #| echo: false
 
 art_data |>
@@ -80,11 +80,11 @@ art_data |>
 In the 25-Ward model, the city of Toronto is separated into 25 neighborhoods or
 voting districts. To better understand the effect of urbanization, cultural diversity, and wealth on the location of public art pieces, we compare the effect
 of population, minority population, income on the number of art works across the 
-25 wards. The `Ward Profiles (25-Ward Model)` data contains demographic, social, and economic information for each ward such as population, households, families, education, ethnocultural composition, spoken languages, income and housing costs. For our purpose of research, we are interested in population, minority population, and average income of each ward, so we extract these pieces of information. A sample of the cleaned dataset for the wards is shown below in Figure 2. 
+25 wards. The `Ward Profiles (25-Ward Model)` data contains demographic, social, and economic information for each ward such as population, households, families, education, ethnocultural composition, spoken languages, income and housing costs. For our purpose of research, we are interested in population, minority population, and average income of each ward, so we extract these pieces of information. A sample of the cleaned dataset for the wards is shown below in @tbl-cleaned_ward. 
 \vspace{10mm}
 
 ```{r}
-#| label: cleaned_ward
+#| label: tbl-cleaned_ward
 #| tbl-cap: Sample of cleaned Toronto 25 Ward data
 #| echo: false
 ward_data <- read_csv("/cloud/project/outputs/data/cleaned_ward_data.csv", show_col_types = FALSE)
@@ -97,12 +97,12 @@ ward_data |>
 ```
 
 ## Public Art by Ward
-As we are interested in the number of public art pieces in each ward, we take the cleaned art data and group the wards together. To better understand our dependent response variable of the number of public art installations by ward, we organize the artworks by ward collect a count. Figure 3 shows the number of art pieces by ward for the 25 wards of Toronto. To better visualize the spread of the number of pieces in each ward, we create a bar graph shown in Figure 4. 
+As we are interested in the number of public art pieces in each ward, we take the cleaned art data and group the wards together. To better understand our dependent response variable of the number of public art installations by ward, we organize the artworks by ward collect a count. @tbl-art_by_ward shows the number of art pieces by ward for the 25 wards of Toronto. To better visualize the spread of the number of pieces in each ward, we create a bar graph shown in @fig-art-by-ward-bar. 
 
 \newpage
 
 ```{r}
-#| label: art_by_ward
+#| label: tbl-art_by_ward
 #| tbl-cap: Number of public art installations by ward.
 #| echo: false
 art_ward_data <- read_csv("/cloud/project/outputs/data/analysis_data.csv", show_col_types = FALSE)
@@ -116,7 +116,7 @@ art_ward_data |>
 
 \newpage
 ```{r}
-#| label: art_by_ward_bar
+#| label: fig-art-by-ward-bar
 #| fig-cap: Number of public art installations by ward.
 #| echo: false
 art_ward_data |>
@@ -126,13 +126,14 @@ art_ward_data |>
   labs(x = "Ward", y = "Number of Public Art Pieces")
 
 ```
-From Figure 1, we can see that Ward 10: Spadina-Fort York, Ward 13: Toronto-Centre, and Ward 11: University-Rosedale have the most number of public art installations while Ward 7: Humber River-Black Creek, Ward 9: Davenport, and Ward 1: Etobicoke North have the least number of public art installations. This aligns with intuition and literature regarding the connection between public art and urbanization. This can be visualized in the map below in Figure 2. The 3 wards with the most public art installations are highlighted. As shown, the wards with the most public art installations are in the main urban center of the city, Downtown Toronto.
+From @fig-art-by-ward-bar, we can see that Ward 10: Spadina-Fort York, Ward 13: Toronto-Centre, and Ward 11: University-Rosedale have the most number of public art installations while Ward 7: Humber River-Black Creek, Ward 9: Davenport, and Ward 1: Etobicoke North have the least number of public art installations. This aligns with intuition and literature regarding the connection between public art and urbanization. This can be visualized in the map below in @fig-toronto-map. The 3 wards with the most public art installations are highlighted. As shown, the wards with the most public art installations are in the main urban center of the city, Downtown Toronto.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig.cap: "Map of Toronto highlighting the wards with the most art work"
+#| label: fig-toronto-map
+#| fig-cap: "Map of Toronto highlighting the wards with the most art work"
 #| fig.pos: 'H'
 library(sf)
 
@@ -168,9 +169,10 @@ ggplot(data = toronto_map) +
 As the goal of this research is to analyze the impact of urbanization, cultural
 diversity, and income on the locations of public art pieces, we combine the Public
 Art Data grouped by ward with the Ward Profile Data to create the analysis data
-we are interested in. The analysis dataset includes the ward number, ward name, population of the ward, minority population in the ward, and average total income of households in 2020. Below in Table 4 is a sample of the analysis data. 
+we are interested in. The analysis dataset includes the ward number, ward name, population of the ward, minority population in the ward, and average total income of households in 2020. Below in @tbl-all_variables is a sample of the analysis data. 
 ```{r}
 #| echo: false
+#| label: tbl-all_variables
 #| tbl-cap: Sample of Data of All Variables
 art_ward_data |>
   select(WARD, ward_name, population, minority_population, income, n) |>
@@ -183,6 +185,8 @@ art_ward_data |>
 As one of our variables of interest, we are determined to examine the relationship between human population and the locations of public art at the ward level. We expect population and the number of public art installations to be positively related because the prosperity and development of cities provide space and development opportunities for the development of public art [@Yin]. Public art is often a reflection of urban development, and population distribution is a direct proxy of urbanization [@Qizhi]. To visualize the relationship of interest, we plot population with the number of public art works.
 ```{r}
 #| echo: false
+#| label: pop_n
+#| fig-cap: ''
 #| warning: false 
   ggplot(data = art_ward_data, aes(x = population, y = n, label = WARD)) +
   geom_point() +
@@ -197,10 +201,12 @@ As one of our variables of interest, we are determined to examine the relationsh
 As expected, we see a moderate positive relationship between population of a ward and the number of public art installations in the ward. Furthermore, Ward 10 is an outlier and has both a high population and high number of public art pieces. Intuitively, this aligns with our beliefs and confirms the trend between high population and urbanization with high concentration of public art pieces. 
 
 ### Examining Cultural Diversity on Public Art
-Another explanatory variable we are interested in is the cultural diversity of a region. In this case, we visualize the relationship between minority population and the number of public art works per ward. We expect to see a positive relationship between these variables. Figure displays the visualization. 
+Another explanatory variable we are interested in is the cultural diversity of a region. In this case, we visualize the relationship between minority population and the number of public art works per ward. We expect to see a positive relationship between these variables. @fig-minority-n displays the visualization. 
 ```{r}
 #| echo: false
 #| warning: false 
+#| label: fig-minority-n
+#| fig-cap: "Plot of Minority Population and Public Art"
   ggplot(data = art_ward_data, aes(x = minority_population, y = n, label = WARD)) +
   geom_point() +
   geom_text_repel(hjust=-0.5, vjust=0.5) +
@@ -213,10 +219,13 @@ Another explanatory variable we are interested in is the cultural diversity of a
 Through the plot, we see that there is no relationship between minority population of a ward and the number of public art works in the ward. It is possible that the location of public art pieces is not a reflection of its cultural diversity. Ward 11 is in the Downtown region but has a lower minority population compared to Ward 13 and Ward 10, also wards located in Downtown. This observation leaves room for further research and investigation into the history and background behind Ward 11's population makeup. 
 
 ### Examining Income and Public Art
-Lastly, in this research we are hoping to look at the relationship between income by ward and the number of public art pieces. Figure plots the average household income in 2020 by ward with the number of art pieces by ward. 
+Lastly, in this research we are hoping to look at the relationship between income by ward and the number of public art pieces. @fig-income-n plots the average household income in 2020 by ward with the number of art pieces by ward. 
 ```{r}
 #| echo: false
 #| warning: false 
+#| label: fig-income-n
+#| fig-cap: "Plot of Income and Public Art"
+#| fig.pos: 'H'
   ggplot(data = art_ward_data, aes(x = income, y = n, label = WARD)) +
   geom_point() +
   geom_text_repel(hjust=-0.5, vjust=0.5) +
