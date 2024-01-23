@@ -2,7 +2,7 @@
 title: "The Impact of Urbanization, Culture, and Wealth on Public Art in Toronto"
 author: 
   - Alaina Hu
-thanks: "Code and data are available at: https://github.com/alainahu/starter_folder."
+thanks: "Code and data are available at: https://github.com/alainahu/public_art"
 date: today
 date-format: long
 abstract: "Public art has emerged in many urban cities across the world. Existing research and analysis on public art often focuses on the impact of public art on various factors, making public art the explanatory variable. This paper examines public art as a response variable to explanatory variables such as population, minority population, and income as a measure of urbanization, culture, and wealth respectively with Public Art Data and Ward Data for the city of Toronto. Through data visualization, we find a moderately positive relationship between population and public art but no relationship between minority population and public art or income and public art."
