@@ -34,10 +34,12 @@ library(ggrepel)
 
 # Introduction
 
-Public art installations, or art pieces available to the general public in public spaces can be found in many urban cities across the world. Installations can be found in
+Public art installations, or art pieces available to the general public in open spaces can be found in many urban cities across the world. Installations can be found in
 New York City, Chicago, London, and even Toronto. The city of Toronto has over 400 public art installations provided by two organizations, Public Arts & Monument Collection and the Percent for Public Art Program. Public art not only enhances the urban environment, but it also brings together visitors and residents with local culture and history, creating an educational and bonding experience [@Barone]. 
 
 Public art design is heavily integrated with urban planning and development as a whole. It is crucial for overall public art design to consider the overall coordination of the environment, meaning that public art should consider and reflect the environment that it is in [@Meng]. Furthermore, public art is also an important symbol of maturity in a city [@Liu]. Thus, our research is interested in the factors that influence public art design and selection of location. We analyze the trend between urbanization, cultural diversity, and wealth on the locations of public art installations in Toronto. 
+
+Existing research on public art often focuses on the effects of public art, making public the explanatory variable. @Wright examine how public art created by Black artists in the Third Ward of Houston engages with gentrification and ghettoization. @Smith looks at the effect of public art on societal interactions that reflect complexities of Egyptian society.  Our research adds on to the literature by conducting analysis on public art as a response variable. While the societal and public art relationship could be bidirectional, we are interested in exploring the relationship between socioeconomic factors on public space usage with statistical methods.
 
 Our research paper begins with the Data section to visualize and further understand the variables we are examining. Next, we go into Discussion of the relationships between the data we are looking for. Finally, we end the paper with the Conclusion section, summarizing the takeaway and future of this research. 
 
@@ -80,7 +82,7 @@ art_data |>
 In the 25-Ward model, the city of Toronto is separated into 25 neighborhoods or
 voting districts. To better understand the effect of urbanization, cultural diversity, and wealth on the location of public art pieces, we compare the effect
 of population, minority population, income on the number of art works across the 
-25 wards. The `Ward Profiles (25-Ward Model)` data contains demographic, social, and economic information for each ward such as population, households, families, education, ethnocultural composition, spoken languages, income and housing costs. For our purpose of research, we are interested in population, minority population, and average income of each ward, so we extract these pieces of information. A sample of the cleaned dataset for the wards is shown below in @tbl-cleaned_ward. 
+25 wards. The `Ward Profiles (25-Ward Model)` data contains demographic, social, and economic information for each ward such as population, households, families, education, ethnocultural composition, spoken languages, income and housing costs. For our purpose of research, we are interested in population, minority population, and average income of each ward.. A sample of the cleaned dataset for the wards is shown below in @tbl-cleaned_ward. 
 \vspace{10mm}
 
 ```{r}
@@ -186,7 +188,7 @@ As one of our variables of interest, we are determined to examine the relationsh
 ```{r}
 #| echo: false
 #| label: pop_n
-#| fig-cap: ''
+#| fig-cap: "Plot of Population and Public Art by Ward"
 #| warning: false 
   ggplot(data = art_ward_data, aes(x = population, y = n, label = WARD)) +
   geom_point() +
@@ -206,7 +208,7 @@ Another explanatory variable we are interested in is the cultural diversity of a
 #| echo: false
 #| warning: false 
 #| label: fig-minority-n
-#| fig-cap: "Plot of Minority Population and Public Art"
+#| fig-cap: "Plot of Minority Population and Public Art by Ward"
   ggplot(data = art_ward_data, aes(x = minority_population, y = n, label = WARD)) +
   geom_point() +
   geom_text_repel(hjust=-0.5, vjust=0.5) +
@@ -224,7 +226,7 @@ Lastly, in this research we are hoping to look at the relationship between incom
 #| echo: false
 #| warning: false 
 #| label: fig-income-n
-#| fig-cap: "Plot of Income and Public Art"
+#| fig-cap: "Plot of Income and Public Art by Ward"
 #| fig.pos: 'H'
   ggplot(data = art_ward_data, aes(x = income, y = n, label = WARD)) +
   geom_point() +
@@ -244,7 +246,7 @@ From the data visualizations and observed relationships in the Data section, we 
 Further analysis can be conducted to verify the significance of the positive relationship between population and number of public art installations, meaning that we can check if the observed positive relationship is a result of chance or a verified trend. 
 
 # Conclusion
-With the purpose of investigating the relationship between urbanization, cultural diversity, and wealth on public art in Toronto, we find a moderate positive relationship between population and number of public art installations by ward. The research finds no relationship between minority population or wealth on the number of public art pieces. suggesting that there are stronger factors that affect the locations of public art in the city. Further research could focus on the impact of population and urbanization on public art while searching for other potential variables of public art location. 
+With the purpose of investigating the relationship between urbanization, cultural diversity, and wealth on public art in Toronto, we find a moderate positive relationship between population and number of public art installations by ward. The research finds no relationship between minority population or wealth on the number of public art pieces. suggesting that there may be stronger factors that affect the locations of public art in the city. Further research could focus on the impact of population and urbanization on public art while searching for other potential variables of public art location. 
 
 
 

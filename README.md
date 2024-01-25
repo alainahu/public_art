@@ -7,7 +7,7 @@ This repo provides the raw datasets, cleaned datasets, and scripts for the resea
 
 **Statement on LLM usage: ChatGPT was used to generate some of the code involved in the data analysis of this research. The entire chat history is available in inputs/llms/usage.txt.**
 
-LLM, Chat GPT, was used to generate some of the code involved in the data anlysis of this research. 
+
 
 ## File Structure
 

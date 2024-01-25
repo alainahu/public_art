@@ -11,11 +11,10 @@
 #### Workspace setup ####
 install.packages("tidyverse")
 library(tidyverse)
-# [...UPDATE THIS...]
+
 
 #### Simulate data ####
-# [...ADD CODE HERE...]
-# There are currently 400 public art installations, so we are simulating 400 pieces.
+# There are currently over 400 public art installations, so we are simulating 401 pieces.
 # The City of Toronto has 25 wards.
 
 ward_names <- c("Etobicoke North", "Etobicoke Centre", "Etobicoke-Lakeshore", 
@@ -28,15 +27,24 @@ ward_names <- c("Etobicoke North", "Etobicoke Centre", "Etobicoke-Lakeshore",
                 "Scarborough Centre", "Scarborough-Agincourt",
                 "Scarborough North", "Scarborough-Guildwood",
                 "Scarborough-Rouge Park")
+#Setting seed to get the same simulated results
 set.seed(106)
-simulated_art_data <- tibble(artwork_id = 1:400,
-                              ward_number = sample(1:25, size = 400, replace = TRUE),
-                             ward_name = sample(ward_names, size = 400, replace = TRUE))
+simulated_art_data <- tibble(artwork_id = 1:401,
+                              ward_number = sample(1:25, size = 401, replace = TRUE),
+                             ward_name = sample(ward_names, size = 401, replace = TRUE))
                               
 #### Tests ####
+#Making sure that the ward names are one of the 25 Toronto Ward names
 simulated_art_data$ward_name |>
   unique() %in% ward_names
+#Checking that all 25 wards are simulated
 simulated_art_data$ward_number |>
   unique() |>
   length() == 25
+#Testing the simulated art work ID
+simulated_art_data$artwork_id |>
+  min() == 1 
+simulated_art_data$artwork_id |>
+  max() >= 400 #Checking that there are over 400 installations
+
 
