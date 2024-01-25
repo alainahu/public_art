@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Simulates the data for the Toronto Public Art statistics... [...UPDATE THIS...]
+# Purpose: Simulates the data for the Toronto Public Art statistics
 # Author: Alaina Hu 
 # Date: 19 January 2024 
 # Contact: alaina.hu@utoronto.ca 
